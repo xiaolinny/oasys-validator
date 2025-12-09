@@ -150,7 +150,9 @@ func ckzgComputeCellProofs(blob *Blob) ([]Proof, error) {
 	return p, nil
 }
 
-// ckzgVerifyCellProofs verifies that the blob data corresponds to the provided commitment.
+// ckzgVerifyCellProofBatch verifies a batch of cell proofs corresponding to the blobs and commitments.
+// Expects length of blobs and commitments to be equal.
+// Expects length of cellProofs be 128 * length of blobs.
 func ckzgVerifyCellProofBatch(blobs []Blob, commitments []Commitment, cellProofs []Proof) error {
 	ckzgIniter.Do(ckzgInit)
 	var (
